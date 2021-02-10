@@ -18,10 +18,14 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    
+    - name: Dump Github content
+      env:
+        GITHUB_CONTEXT: ${{ toJSON(github) }}
+      run: echo "$GITHUB_CONTEXT"
 
     - run: git log
-    
-    - run: echo github
+  
       
     - uses: actions/github-script@v3
       with:
