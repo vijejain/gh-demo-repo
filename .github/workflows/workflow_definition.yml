@@ -25,6 +25,8 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - run: git log
+      
+    - run: git clone https://github.com/vijejain/dg-demo dg-demo-clone1
   
       
     - uses: actions/github-script@v3
