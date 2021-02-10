@@ -20,6 +20,10 @@ jobs:
         fetch-depth: 0
 
     - run: git log
+      
+    - uses: actions/github-script@v3
+      with:
+        script: console.log(context)
     
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
