@@ -26,7 +26,7 @@ jobs:
 
     - run: git log
       
-    - run: git clone https://github.com/vijejain/dg-demo dg-demo-clone1
+    - run: git config --list
   
       
     - uses: actions/github-script@v3
