@@ -33,7 +33,7 @@ jobs:
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@master
       env:
-        GIT_SHALLOW_CLONE: ${{steps.shallow_clone.outputs.*)}}
+        GIT_SHALLOW_CLONE: ${{steps.shallow_clone.outputs.*}}
 
       
     - uses: actions/github-script@v3
