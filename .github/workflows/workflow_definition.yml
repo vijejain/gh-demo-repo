@@ -26,10 +26,7 @@ jobs:
 
     - run: git log
       
-    - run: git config --list
-    - run: git config --get user.name
-    - run: git config --get user.email
-  
+    - run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2  
       
     - uses: actions/github-script@v3
       with:
