@@ -27,6 +27,8 @@ jobs:
     - run: git log
       
     - run: git config --list
+    - run: git config --get user.name
+    - run: git config --get user.email
   
       
     - uses: actions/github-script@v3
