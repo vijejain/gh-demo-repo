@@ -25,13 +25,9 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - run: git log
-    
-    - run: |
-        gh auth login
-        gh repo clone vijejain/dg-demo
-      
+          
     - name: Shallow clone
-      run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2        
+      run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 ./clone-repo     
       id: shallow_clone
 
     - uses: actions/checkout@master
