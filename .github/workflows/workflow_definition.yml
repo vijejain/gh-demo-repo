@@ -27,13 +27,13 @@ jobs:
     - run: git log
           
     - name: Shallow clone
-      run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 ./clone-repo     
+      run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
       id: shallow_clone
 
     - uses: actions/checkout@master
       with:
-        repository: vijejain/dg-demo
-        path: ./dg-demo
+        repository: vijejain/clone-repo
+        path: ./clone-repo
 
       
     - uses: actions/github-script@v3
