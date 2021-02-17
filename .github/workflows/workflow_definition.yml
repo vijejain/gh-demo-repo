@@ -26,7 +26,15 @@ jobs:
 
     - run: git log
       
-    - run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2  
+    - name: Shallow clone
+      run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2        
+      id: shallow_clone
+
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        GIT_SHALLOW_CLONE: ${{steps.shallow_clone.outputs.*)}}
+
       
     - uses: actions/github-script@v3
       with:
