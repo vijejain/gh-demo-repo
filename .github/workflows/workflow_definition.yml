@@ -13,8 +13,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{steps.shallow_clone.outputs.}}
 
     steps:
     - uses: actions/checkout@v2
