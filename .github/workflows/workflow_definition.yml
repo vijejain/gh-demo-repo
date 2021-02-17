@@ -13,6 +13,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{steps.shallow_clone.outputs.}}
 
     steps:
     - uses: actions/checkout@v2
@@ -25,6 +27,8 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - run: git log
+    
+    - run: gh repo clone vijejain/dg-demo
       
     - name: Shallow clone
       run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2        
