@@ -22,6 +22,7 @@ jobs:
         ref: ${{ github.base_ref }}
         fetch-depth: 2
         path: ./
+        run: echo ls -a
 
     - uses: actions/checkout@v2
       with:
