@@ -22,8 +22,10 @@ jobs:
         ref: ${{ github.base_ref }}
         fetch-depth: 2
         path: ./
-      
-    - run: echo "ls -a"
+        script: |
+          git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
+          echo ${GITHUB_WORKSPACE}/ls
+        
 
     - uses: actions/checkout@v2
       with:
