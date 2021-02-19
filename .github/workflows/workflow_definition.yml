@@ -22,6 +22,8 @@ jobs:
         ref: ${{ github.base_ref }}
         fetch-depth: 2
         path: ./  
+        
+    - run: ls -a ./vijejain/dg-demo
 
 #     - uses: actions/checkout@v2
 #       with:
@@ -34,11 +36,11 @@ jobs:
 
 #     - run: git log
           
-    - name: Shallow clone
-      run: | 
-        git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
-        ls -a ./clone-repo
-      id: shallow_clone
+#     - name: Shallow clone
+#       run: | 
+#         git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
+#         ls -a ./clone-repo
+#       id: shallow_clone
       
     - uses: actions/github-script@v3
       with:
