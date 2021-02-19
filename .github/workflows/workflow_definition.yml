@@ -18,43 +18,58 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    
+    - name: Dump Github content
+      env:
+        GITHUB_CONTEXT: ${{ toJSON(github) }}
+      run: echo "$GITHUB_CONTEXT"
 
     - run: git log
+          
+    - name: Shallow clone
+      run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
+      id: shallow_clone
+
+    - uses: actions/checkout@master
+      with:
+        repository: vijejain/clone-repo
+        path: ./clone-repo
+
       
     - uses: actions/github-script@v3
       with:
         script: console.log(context)
     
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+#     - name: Set up JDK 1.8
+#       uses: actions/setup-java@v1
+#       with:
+#         java-version: 1.8
+#     - name: Build with Maven
+#       run: mvn -B package --file pom.xml
         
     # Extra step requied for private beta
-    - name: Checkout the action from a private repository
-      uses: actions/checkout@v2
-      with:
-        repository: aws-actions/codeguru-reviewer
-        ref: refs/heads/main
-        ssh-key: ${{ secrets.SSH_KEY }}
-        path: ./.github/actions/codeguru-reviewer
+#     - name: Checkout the action from a private repository
+#       uses: actions/checkout@v2
+#       with:
+#         repository: aws-actions/codeguru-reviewer
+#         ref: refs/heads/main
+#         ssh-key: ${{ secrets.SSH_KEY }}
+#         path: ./.github/actions/codeguru-reviewer
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2 #AWS region where you want to use CodeGuru
+#     - name: Configure AWS credentials
+#       uses: aws-actions/configure-aws-credentials@v1
+#       with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: us-west-2 #AWS region where you want to use CodeGuru
             
-    - name: AWS CodeGuru Reviewer Security Scanner
-      uses: ./.github/actions/codeguru-reviewer
-      with:
-        src-root: src/main/java # Java source code root
-        build-root: target # build artifact(s) directory
+#     - name: AWS CodeGuru Reviewer Security Scanner
+#       uses: ./.github/actions/codeguru-reviewer
+#       with:
+#         src-root: src/main/java # Java source code root
+#         build-root: target # build artifact(s) directory
 
-    - name: Upload review result
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: codeguru-results.sarif.json
+#     - name: Upload review result
+#       uses: github/codeql-action/upload-sarif@v1
+#       with:
+#         sarif_file: codeguru-results.sarif.json

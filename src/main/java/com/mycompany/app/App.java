@@ -20,7 +20,6 @@ public class App
 
     private void bar(String s) throws Exception
     {
-        final Cipher c = Cipher.getInstance(s);
-        c.doFinal();
+        Cipher c = Cipher.getInstance(s);
     }
 }
