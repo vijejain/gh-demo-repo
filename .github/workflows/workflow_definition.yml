@@ -21,25 +21,23 @@ jobs:
         repository: vijejain/dg-demo
         ref: ${{ github.base_ref }}
         fetch-depth: 2
-        path: ./
-        script: |
-          git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
-          echo ${GITHUB_WORKSPACE}/ls
-        
+        path: ./  
 
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+#     - uses: actions/checkout@v2
+#       with:
+#         fetch-depth: 0
     
     - name: Dump Github content
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"
 
-    - run: git log
+#     - run: git log
           
     - name: Shallow clone
-      run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
+      run: | 
+        git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
+        echo ${GITHUB_WORKSPACE}/ls
       id: shallow_clone
       
     - uses: actions/github-script@v3
