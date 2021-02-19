@@ -37,7 +37,7 @@ jobs:
     - name: Shallow clone
       run: | 
         git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
-        echo ${GITHUB_WORKSPACE}/ls
+        ls ${GITHUB_WORKSPACE}
       id: shallow_clone
       
     - uses: actions/github-script@v3
