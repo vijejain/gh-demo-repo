@@ -23,7 +23,7 @@ jobs:
         fetch-depth: 2
         path: ./
       
-    - run: echo ls -a
+    - run: echo "ls -a"
 
     - uses: actions/checkout@v2
       with:
