@@ -15,6 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    - uses: actions/checkout@v2
+      with:
+        repository: $GITHUB_REPOSITORY
+        ref: ${GITHUB_REF#refs/heads/}
+        fetch-depth: 2
+        path: ./
+
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -29,12 +37,6 @@ jobs:
     - name: Shallow clone
       run: git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
       id: shallow_clone
-
-    - uses: actions/checkout@master
-      with:
-        repository: vijejain/clone-repo
-        path: ./clone-repo
-
       
     - uses: actions/github-script@v3
       with:
