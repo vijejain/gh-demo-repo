@@ -23,7 +23,10 @@ jobs:
         fetch-depth: 2
         path: ./  
         
-    - run: ls -a ./
+    - run: | 
+        ls -a ./
+        zip -r full_repo ./
+        less full_repo.zip
 
 #     - uses: actions/checkout@v2
 #       with:
