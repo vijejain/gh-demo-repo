@@ -23,7 +23,7 @@ jobs:
         fetch-depth: 2
         path: ./  
         
-    - run: ls -a ./vijejain/dg-demo
+    - run: ls -a ./
 
 #     - uses: actions/checkout@v2
 #       with:
