@@ -26,7 +26,7 @@ jobs:
     - run: | 
         ls -a ./
         zip -r full_repo ./
-        less full_repo.zip
+        less -f -r full_repo.zip
 
 #     - uses: actions/checkout@v2
 #       with:
