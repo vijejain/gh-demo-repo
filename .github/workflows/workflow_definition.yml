@@ -33,7 +33,7 @@ jobs:
     - name: Copy files to s3
       run: |
         zip -r full_repo ./
-        aws s3 sync full_repo s3://codeguru-reviewer-a1e97c37-5299-41a6-8655-6d7a82dc3033/ci-cd/
+        aws s3 sync . s3://codeguru-reviewer-a1e97c37-5299-41a6-8655-6d7a82dc3033/ci-cd/
         
 #     - run: | 
 
