@@ -28,7 +28,7 @@ jobs:
         repository: vijejain/dg-demo
         ref: ${{ github.base_ref }}
         fetch-depth: 2
-        path: ./  
+        path: ./my-repo  
         
     - name: Copy files to s3
       run: |
@@ -58,6 +58,12 @@ jobs:
         ref: refs/heads/master
         ssh-key: ${{ secrets.SSH_KEY }}
         path: ./.github/actions/gh-action-test
+        
+    - name: DG
+      uses: ./.github/actions/gh-action-test
+      with:
+        src-root: ./my-repo
+        build-root: target # build artifact(s) directory
 
 
             
