@@ -34,35 +34,11 @@ jobs:
       run: |
         zip -r full_repo ./
         aws s3 sync . s3://codeguru-reviewer-a1e97c37-5299-41a6-8655-6d7a82dc3033/ci-cd/
-        
-#     - run: | 
-
-#         s3 cp full_repo.zip s3://codeguru-reviewer-a1e97c37-5299-41a6-8655-6d7a82dc3033/ci-cd/
-        
-# Below zips the complete source code with .git
-#     - run: | 
-#         ls -a ./
-#         zip -r full_repo ./
-#         less -f -r full_repo.zip
-
-
-
-#     - uses: actions/checkout@v2
-#       with:
-#         fetch-depth: 0
     
     - name: Dump Github content
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"
-
-#     - run: git log
-          
-#     - name: Shallow clone
-#       run: | 
-#         git clone https://github.com/vijejain/dg-demo.git --branch pr-test --depth 2 clone-repo
-#         ls -a ./clone-repo
-#       id: shallow_clone
       
     - uses: actions/github-script@v3
       with:
@@ -75,14 +51,13 @@ jobs:
 #     - name: Build with Maven
 #       run: mvn -B package --file pom.xml
         
-    # Extra step requied for private beta
-#     - name: Checkout the action from a private repository
-#       uses: actions/checkout@v2
-#       with:
-#         repository: aws-actions/codeguru-reviewer
-#         ref: refs/heads/main
-#         ssh-key: ${{ secrets.SSH_KEY }}
-#         path: ./.github/actions/codeguru-reviewer
+    - name: Checkout the action from a private repository
+      uses: actions/checkout@v2
+      with:
+        repository: vijejain/gh-action-test
+        ref: refs/heads/main
+        ssh-key: ${{ secrets.SSH_KEY }}
+        path: ./.github/actions/gh-action-test
 
 
             
