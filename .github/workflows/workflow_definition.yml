@@ -30,10 +30,10 @@ jobs:
         fetch-depth: 2
         path: ./my-repo  
         
-    - name: Copy files to s3
-      run: |
-        zip -r full_repo ./
-        aws s3 sync . s3://codeguru-reviewer-a1e97c37-5299-41a6-8655-6d7a82dc3033/ci-cd/
+#     - name: Copy files to s3
+#       run: |
+#         zip -r full_repo ./
+#         aws s3 sync . s3://codeguru-reviewer-a1e97c37-5299-41a6-8655-6d7a82dc3033/ci-cd/
     
     - name: Dump Github content
       env:
@@ -63,6 +63,7 @@ jobs:
       uses: ./.github/actions/gh-action-test
       with:
         src-root: ./my-repo
+        path: ./my-repo
         build-root: target # build artifact(s) directory
 
 
