@@ -55,7 +55,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: vijejain/gh-action-test
-        ref: refs/heads/main
+        ref: refs/heads/master
         ssh-key: ${{ secrets.SSH_KEY }}
         path: ./.github/actions/gh-action-test
 
