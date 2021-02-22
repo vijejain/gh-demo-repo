@@ -62,8 +62,7 @@ jobs:
     - name: DG
       uses: ./.github/actions/gh-action-test
       with:
-        src-root: ./my-repo
-        path: ./my-repo
+        src-root: .
         build-root: target # build artifact(s) directory
 
 
