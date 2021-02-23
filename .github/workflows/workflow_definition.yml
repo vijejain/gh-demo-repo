@@ -64,6 +64,9 @@ jobs:
       with:
         src-root: .
         build-root: target # build artifact(s) directory
+        if: ${{ github.event_name == 'push' || github.event.pull_request.merged == 'true'  }}
+        source-commit-id: github.event.before    # before
+        destination-commit-id: github.event.after   # after
 
 
             
