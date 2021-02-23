@@ -65,8 +65,8 @@ jobs:
       with:
         src-root: .
         build-root: target # build artifact(s) directory
-        source-commit-id: ${{github.event.before}}    # before
-        destination-commit-id: ${{github.event.after}}   # after
+        source-commit-id: $GITHUB_CONTEXT.event.before    # before
+        destination-commit-id: $GITHUB_CONTEXT.event.after   # after
 
 
             
