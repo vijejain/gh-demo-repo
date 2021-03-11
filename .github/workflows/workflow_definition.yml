@@ -61,12 +61,11 @@ jobs:
         
     - name: DG
       uses: ./.github/actions/gh-action-test
-      if: ${{ github.event_name == 'push' || github.event.pull_request.merged == 'true' }}
       with:
-        src-root: .
-        build-root: target # build artifact(s) directory
-        source-commit-id: $GITHUB_CONTEXT.event.before    # before
-        destination-commit-id: $GITHUB_CONTEXT.event.after   # after
+        src_root: .
+        build_root: target # build artifact(s) directory
+        source_commit_id: $GITHUB_CONTEXT.event.before    # before
+        destination_commit_id: $GITHUB_CONTEXT.event.after   # after
 
 
             
