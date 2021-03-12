@@ -66,8 +66,8 @@ jobs:
       with:
         src_root: .
         build_root: target # build artifact(s) directory
-        source_commit_id: ${{ GITHUB_CONTEXT.event.base_ref }}    # before
-        destination_commit_id: ${{ GITHUB_CONTEXT.event.base_ref }}   # after
+        source_commit_id: $GITHUB_CONTEXT.event.base_ref    # before
+        destination_commit_id: $GITHUB_CONTEXT.event.base_ref   # after
 
 
             
