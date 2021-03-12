@@ -38,7 +38,9 @@ jobs:
     - name: Dump Github content
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
-      run: echo "$GITHUB_CONTEXT"
+      run: |
+        echo "$GITHUB_CONTEXT"
+        echo "${{ github.event.base_ref }}"
       
     - uses: actions/github-script@v3
       with:
@@ -66,8 +68,8 @@ jobs:
       with:
         src_root: .
         build_root: target # build artifact(s) directory
-        source_commit_id: $GITHUB_CONTEXT    # before
-        destination_commit_id: $GITHUB_CONTEXT.event.base_ref   # after
+        source_commit_id: "${{ github.event.base_ref }}"    # before
+        destination_commit_id: ${{ github.event.base_ref }}   # after
 
 
             
