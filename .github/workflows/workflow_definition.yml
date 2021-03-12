@@ -39,8 +39,8 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: |
-        echo "$GITHUB_CONTEXT"
-        echo "${{ github.event.base_ref }}"
+        # echo "$GITHUB_CONTEXT"
+        echo ${{ github.event.base_ref }}
       
     - uses: actions/github-script@v3
       with:
