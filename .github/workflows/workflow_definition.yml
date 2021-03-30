@@ -24,9 +24,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: aws-actions/codeguru-reviewer
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAT }}
         ref: refs/heads/main
-#         ssh-key: ${{ secrets.SSH_KEY }}
+        ssh-key: ${{ secrets.SSH_KEY }}
         path: ./.github/actions/codeguru-reviewer
 
 # # This workflow will build a Java project with Maven
