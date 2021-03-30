@@ -26,7 +26,7 @@ jobs:
         repository: aws-actions/codeguru-reviewer
         token: ${{ secrets.GITHUB_TOKEN }}
         ref: refs/heads/main
-        ssh-key: ${{ secrets.SSH_KEY }}
+#         ssh-key: ${{ secrets.SSH_KEY }}
         path: ./.github/actions/codeguru-reviewer
 
 # # This workflow will build a Java project with Maven
