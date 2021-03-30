@@ -1,27 +1,14 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Java CI with Maven
+name: Java CI
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-    types: [opened, closed]
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags'  
+    branches:
+    - test
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v2
@@ -34,38 +21,82 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    # Extra step requied for private beta .. 
-    - name: Checkout the action from a private repository
+    - name: Checkout codeguru actions
       uses: actions/checkout@v2
       with:
-        repository: vijejain/gh-actions-test
+        repository: aws-actions/codeguru-reviewer
         ref: refs/heads/main
         ssh-key: ${{ secrets.SSH_KEY }}
-        path: ./.github/actions/gh-actions-test
+        path: ./.github/actions/codeguru-reviewer
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2 #AWS region where you want to use CodeGuru
+# # This workflow will build a Java project with Maven
+# # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-    - name: AWS CodeGuru Reviewer Security Scanner
-      uses: ./.github/actions/gh-actions-test 
-      with:
-        src-root: src/main/java # Java source code root
-        build-root: target # build artifact(s) directory
+# name: Java CI with Maven
 
-    - name: Dump Github content
-      env:
-        GITHUB_CONTEXT: ${{ toJSON(github) }}
-      run: echo "$GITHUB_CONTEXT"
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+#     types: [opened, closed]
+#   workflow_dispatch:
+#     inputs:
+#       logLevel:
+#         description: 'Log level'     
+#         required: true
+#         default: 'warning'
+#       tags:
+#         description: 'Test scenario tags'  
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Set up JDK 1.8
+#       uses: actions/setup-java@v1
+#       with:
+#         java-version: 1.8
+
+#     - name: Build with Maven
+#       run: mvn -B package --file pom.xml
+
+#     # Extra step requied for private beta .. 
+#     - name: Checkout the action from a private repository
+#       uses: actions/checkout@v2
+#       with:
+#         repository: vijejain/gh-actions-test
+#         ref: refs/heads/main
+#         ssh-key: ${{ secrets.SSH_KEY }}
+#         path: ./.github/actions/gh-actions-test
+
+#     - name: Configure AWS credentials
+#       uses: aws-actions/configure-aws-credentials@v1
+#       with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: us-west-2 #AWS region where you want to use CodeGuru
+
+#     - name: AWS CodeGuru Reviewer Security Scanner
+#       uses: ./.github/actions/gh-actions-test 
+#       with:
+#         src-root: src/main/java # Java source code root
+#         build-root: target # build artifact(s) directory
+
+#     - name: Dump Github content
+#       env:
+#         GITHUB_CONTEXT: ${{ toJSON(github) }}
+#       run: echo "$GITHUB_CONTEXT"
       
-    - uses: actions/github-script@v3
-      with:
-        script: console.log(context)
+#     - uses: actions/github-script@v3
+#       with:
+#         script: console.log(context)
 
-    - name: Upload review result
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: codeguru-results.sarif.json
+#     - name: Upload review result
+#       uses: github/codeql-action/upload-sarif@v1
+#       with:
+#         sarif_file: codeguru-results.sarif.json
