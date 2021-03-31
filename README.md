@@ -3,4 +3,4 @@ Playing with GH Actions and GitLab CI/CD
 
 Maven Hello World.e
 
-Test PR-1...
+Test PR-1...w
